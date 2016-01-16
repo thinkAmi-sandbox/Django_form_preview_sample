@@ -1,0 +1,23 @@
+[
+    {
+        "model": "myapp.Category",
+        "pk": 1,
+        "fields": {
+            "name": "cat1"
+        }
+    },
+    {
+        "model": "myapp.Category",
+        "pk": 2,
+        "fields": {
+            "name": "cat2"
+        }
+    },
+    {
+        "model": "myapp.Category",
+        "pk": 3,
+        "fields": {
+            "name": "cat3"
+        }
+    }
+]

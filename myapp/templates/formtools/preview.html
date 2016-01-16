@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>My Site</title>
+</head>
+<body>
+    <h1>Article Create with Preview</h1>
+    <div id="main">
+        {% load data_verbose %}
+
+        <h1>"Preview your submission"</h1>
+        
+        <p>form attr: {{ form|all_attr }}</p>
+        <p>form instance: {{ form.instance }}</p>
+        {# => Article object #}
+        <p>not display(get_title_display):{{ form.instance.get_title_display }}</p>
+        
+        <table>
+        {% for field in form %}
+            <tr>
+                <th>{{ field.label }}:</th>
+                <th>auto_id: </th>
+                <th>{{ field.label }} - readable </th>
+            </tr>
+            <tr>
+                <td>{{ field.data }}</td>
+                <td>{{ field.auto_id }}</td>
+                <td>{{ field|data_verbose }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+
+        <p>Security hash: {{ hash_value }}</p>
+
+        <form action="" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                {{ field.as_hidden }}
+            {% endfor %}
+            
+            <input type="hidden" name="{{ stage_field }}" value="2" />
+            <input type="hidden" name="{{ hash_field }}" value="{{ hash_value }}" />
+            <p>
+                <input type="submit" value="Submit" />
+            </p>
+        </form>
+
+
+        <h1>"Or edit it again"</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            
+            <table>
+               {{ form }}
+            </table>
+            <input type="hidden" name="{{ stage_field }}" value="1" />
+            <p>
+                <input type="submit" value="Preview" />
+            </p>
+        </form>
+    </div>
+</body>
+</html>
+
+

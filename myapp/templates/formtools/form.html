@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>My Site</title>
+</head>
+<body>
+    <h1>Article Create with Preview</h1>
+    <div id="main">
+        {% load i18n %}
+
+        {% if form.errors %}
+            <h1>{% trans "Please correct the following errors" %}</h1>
+        {% else %}
+            <h1>{% trans "Submit" %}</h1>
+        {% endif %}
+
+        <form action="" method="post">
+            {% csrf_token %}
+            
+            <table>
+                {{ form }}
+            </table>
+            <input type="hidden" name="{{ stage_field }}" value="1" />
+            <p>
+                <input type="submit" value="{% trans "Preview" %}" />
+            </p>
+        </form>
+    </div>
+</body>
+</html>
+
+

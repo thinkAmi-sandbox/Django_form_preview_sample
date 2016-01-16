@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>My Site</title>
+</head>
+<body>
+    <h1>Article Detail</h1>
+    <div id="main">
+        <p>Name: {{ object.title }}</p>
+        <p>
+            {# このままだとオブジェクトの配列が表示されてしまう #}
+            Category_all:{{ object.categories.all }}
+        </p>
+        
+        <p>Category:
+            {# forで展開することで、各オブジェクトを表示できる #}
+            {% for category in object.categories.all %}
+                {{ category }}
+            {% endfor %}    
+        </p>
+        <p>Content: {{ object.content }}</p>
+    </div>
+</body>
+</html>
